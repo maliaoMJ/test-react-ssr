@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/Routes.js":
+/*!***********************!*\
+  !*** ./src/Routes.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"react-router-dom\");\n\nvar _index = __webpack_require__(/*! ./components/Home/index */ \"./src/components/Home/index.js\");\n\nvar _index2 = _interopRequireDefault(_index);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nexports.default = _react2.default.createElement(\n    'div',\n    null,\n    _react2.default.createElement(_reactRouterDom.Route, { path: '/', exact: true, component: _index2.default })\n);\n\n//# sourceURL=webpack:///./src/Routes.js?");
+
+/***/ }),
+
 /***/ "./src/components/Home/index.js":
 /*!**************************************!*\
   !*** ./src/components/Home/index.js ***!
@@ -94,7 +106,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Home = function Home() {\n    return _react2.default.createElement(\n        'div',\n        null,\n        'React SSR Components',\n        _react2.default.createElement(\n            'button',\n            { onClick: function onClick() {\n                    return alert('hello React SSR');\n                } },\n            'click'\n        )\n    );\n};\n\nmodule.exports = Home;\n\n//# sourceURL=webpack:///./src/components/Home/index.js?");
+eval("\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Home = function Home() {\n    return _react2.default.createElement(\n        'div',\n        null,\n        _react2.default.createElement(\n            'span',\n            null,\n            'React SSR Components'\n        ),\n        _react2.default.createElement(\n            'button',\n            { onClick: function onClick() {\n                    return alert('hello React SSR');\n                } },\n            'click'\n        )\n    );\n};\n\nmodule.exports = Home;\n\n//# sourceURL=webpack:///./src/components/Home/index.js?");
 
 /***/ }),
 
@@ -106,7 +118,7 @@ eval("\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _reac
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _express = __webpack_require__(/*! express */ \"express\");\n\nvar _express2 = _interopRequireDefault(_express);\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _server = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n\nvar _index = __webpack_require__(/*! ./components/Home/index.js */ \"./src/components/Home/index.js\");\n\nvar _index2 = _interopRequireDefault(_index);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar app = (0, _express2.default)();\napp.use(_express2.default.static('public'));\napp.get('/', function (req, res) {\n    var content = (0, _server.renderToString)(_react2.default.createElement(_index2.default, null));\n    res.send('<html>\\n           <head></head>\\n           <body>\\n            <div id=\\'root\\'>\\n                <h4>React SSR</h4>\\n                    ' + content + '\\n            </div>\\n           </body>\\n           <script src=\\'./index.js\\'></script>\\n        </html>');\n});\napp.listen(3000);\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("\n\nvar _express = __webpack_require__(/*! express */ \"express\");\n\nvar _express2 = _interopRequireDefault(_express);\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _server = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"react-router-dom\");\n\nvar _Routes = __webpack_require__(/*! ./Routes */ \"./src/Routes.js\");\n\nvar _Routes2 = _interopRequireDefault(_Routes);\n\nvar _index = __webpack_require__(/*! ./components/Home/index.js */ \"./src/components/Home/index.js\");\n\nvar _index2 = _interopRequireDefault(_index);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar app = (0, _express2.default)();\napp.use(_express2.default.static('public'));\napp.get('/', function (req, res) {\n    var content = (0, _server.renderToString)(_react2.default.createElement(\n        _reactRouterDom.StaticRouter,\n        { location: req.path, context: {} },\n        _Routes2.default\n    ));\n    res.send('<html>\\n           <head></head>\\n           <body>\\n            <div id=\\'root\\'>\\n              ' + content + '\\n            </div>\\n           </body>\\n           <script src=\\'./index.js\\'></script>\\n        </html>');\n});\napp.listen(3000);\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -140,6 +152,17 @@ eval("module.exports = require(\"react\");\n\n//# sourceURL=webpack:///external_
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"react-dom/server\");\n\n//# sourceURL=webpack:///external_%22react-dom/server%22?");
+
+/***/ }),
+
+/***/ "react-router-dom":
+/*!***********************************!*\
+  !*** external "react-router-dom" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"react-router-dom\");\n\n//# sourceURL=webpack:///external_%22react-router-dom%22?");
 
 /***/ })
 
