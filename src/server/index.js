@@ -7,22 +7,23 @@ import { render } from './utils'
 const app = express();
 const store = getStore();
 app.use(express.static('public'));
-app.use('/api', proxy('http://rap2api.taobao.org', {
+app.use('/app', proxy('http://rap2api.taobao.org', {
     proxyReqPathResolver: function (req) {
-        return req.url
+        console.log(req.url)
+        return '/app' + req.url
     }
 }));
 app.get('*', function (req, res) {
-    // const promises = []
-    // const matchedRoutes = matchRoutes(routes, req.path);
-    // matchedRoutes.forEach(item => {
-    //     if (item.route.loadData) {
-    //         promises.push(item.route.loadData(store))
-    //     }
-    // });
-    // Promise.all(promises).then(data => {
-    res.send(render(store, routes, req));
-    //     });
+    const promises = []
+    const matchedRoutes = matchRoutes(routes, req.path);
+    matchedRoutes.forEach(item => {
+        if (item.route.loadData) {
+            promises.push(item.route.loadData(store))
+        }
+    });
+    Promise.all(promises).then(data => {
+        res.send(render(store, routes, req));
+    });
 
 })
 app.listen(3000)
