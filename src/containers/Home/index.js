@@ -12,7 +12,7 @@ class Home extends Component {
         </div>)
     }
     componentDidMount() {
-        // this.props.getHomeList();
+        this.props.getHomeList();
         console.log(this.props);
     };
 }

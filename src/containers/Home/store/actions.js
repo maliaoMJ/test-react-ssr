@@ -6,7 +6,7 @@ const changeList = (payload) => ({
 });
 export const getHomeList = () => {
     return (dispatch) => {
-        return axios.get('http://rap2api.taobao.org/app/mock/23080/wxauth/accounts')
+        return axios.get('/api/app/mock/23080/wxauth/accounts')
             .then(res => {
                 dispatch(
                     changeList(res.data.wechatAccounts)
