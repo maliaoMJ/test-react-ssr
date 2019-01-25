@@ -7,10 +7,9 @@ import { render } from './utils'
 const app = express();
 const store = getStore();
 app.use(express.static('public'));
-app.use('/app', proxy('http://rap2api.taobao.org', {
+app.use('/api', proxy('192.168.50.33:8000', {
     proxyReqPathResolver: function (req) {
-        console.log(req.url)
-        return '/app' + req.url
+        return '/api' + req.url
     }
 }));
 app.get('*', function (req, res) {

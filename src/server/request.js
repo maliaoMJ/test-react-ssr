@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 const instance = Axios.create({
-    baseURL: 'http://rap2api.taobao.org/',
+    baseURL: 'http://192.168.50.33:8000',
     timeout: 60000
 });
 

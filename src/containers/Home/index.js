@@ -6,14 +6,13 @@ import { getHomeList } from './store/actions';
 class Home extends Component {
     render() {
         return (<div>
-            <AppHeader></AppHeader>
-            {this.props.wechatAccounts.map(item => { return <div key={item.id}>{item.name}</div> })}
+            <span>Home page</span>
+            {this.props.userList.map(item => { return <div key={item.id}>{item.name}</div> })}
             <button onClick={() => console.log(this.props)}>click</button>
         </div>)
     }
     componentDidMount() {
         this.props.getHomeList();
-        console.log(this.props);
     };
 }
 Home.loadData = (store) => {
@@ -21,7 +20,7 @@ Home.loadData = (store) => {
 }
 const mapStateToProps = state => ({
     name: state.home.name || '',
-    wechatAccounts: state.home.wechatAccounts
+    userList: state.home.userList || []
 });
 const mapDispatchToProps = dispatch => ({
     getHomeList() {

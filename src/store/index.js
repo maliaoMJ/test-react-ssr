@@ -10,9 +10,9 @@ const getStore = () => {
     return createStore(reducer, applyMiddleware(thunk.withExtraArgument(serverAxios)));
 }
 const getClientStore = () => {
-    // const defaultState = window.context.state;
+    const defaultState = window.context.state;
     // return createStore(reducer, defaultState, applyMiddleware(thunk));
-    return createStore(reducer, applyMiddleware(thunk.withExtraArgument(clientAxios)));
+    return createStore(reducer, defaultState, applyMiddleware(thunk.withExtraArgument(clientAxios)));
 }
 export {
     getStore,

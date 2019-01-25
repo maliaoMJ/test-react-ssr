@@ -1,7 +1,7 @@
 import { CHANGE_LIST } from './constants'
 
 const defaultState = {
-    wechatAccounts: [],
+    userList: [],
     name: 'redux'
 }
 
@@ -11,7 +11,7 @@ export default (state = defaultState, action) => {
         case CHANGE_LIST:
             return {
                 ...state,
-                wechatAccounts: action.payload
+                userList: action.payload
             }
         default:
             return state

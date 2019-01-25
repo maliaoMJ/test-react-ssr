@@ -2,7 +2,7 @@ import Axios from 'axios';
 
 const instance = Axios.create({
     baseURL: '/',
-    timeout: 6000
+    timeout: 60000
 });
 
 export default instance;

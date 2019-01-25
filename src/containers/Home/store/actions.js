@@ -5,11 +5,10 @@ const changeList = (payload) => ({
 });
 export const getHomeList = () => {
     return (dispatch, getState, AxiosInstance) => {
-        return AxiosInstance.get('/app/mock/23080/wxauth/accounts')
+        return AxiosInstance.get('/api/users/list')
             .then(res => {
-
                 dispatch(
-                    changeList(res.data.wechatAccounts)
+                    changeList(res.data.data)
                 )
             })
     }
