@@ -4,6 +4,7 @@ import App from './App';
 
 import Home from './containers/Home/index';
 import Login from './containers/Login/index';
+import NoFound from './containers/NoFound/index'
 export default [
     {
         path: '/',
@@ -27,6 +28,10 @@ export default [
                 key: 'login',
                 component: Login,
                 exact: true,
+            },
+            {
+                component: NoFound,
+                key: 'noFound'
             }
         ]
     }

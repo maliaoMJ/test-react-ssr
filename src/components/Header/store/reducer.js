@@ -10,11 +10,15 @@ export default (state = defaultState, action) => {
         case USER_LOGIN:
             return {
                 ...state,
+                user: action.payload,
+                login: true
             }
             break;
         case EXIT_LOGIN:
             return {
                 ...state,
+                login: false,
+                user: {}
             }
             break;
         default:

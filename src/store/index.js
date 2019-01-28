@@ -8,8 +8,8 @@ const reducer = combineReducers({
     home: HomeReducer,
     auth: HeaderReducer
 })
-const getStore = () => {
-    return createStore(reducer, applyMiddleware(thunk.withExtraArgument(serverAxios)));
+const getStore = (req) => {
+    return createStore(reducer, applyMiddleware(thunk.withExtraArgument(serverAxios(req))));
 }
 const getClientStore = () => {
     const defaultState = window.context.state;

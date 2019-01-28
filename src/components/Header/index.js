@@ -8,12 +8,14 @@ class AppHeader extends Component {
             <span>Header Components</span>
             <Link to="/">home</Link>
             <Link to="/login">Login</Link>
-            <p>退出登录</p>
+            <p onClick={this.props.toLogin}>登录</p>
+            <p onClick={this.props.exit}>退出登录</p>
             <br></br>
+            <span>{this.props.login ? this.props.user.pwd : '暂未登录'}</span>
         </div>)
     }
     componentDidMount() {
-        console.log(this.props);
+        // console.log(this.props);
     }
 }
 
@@ -23,10 +25,14 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
     toLogin: () => {
-        dispatch(userToLogin())
+        dispatch(userToLogin({
+            name: 'majian'
+        }));
     },
     exit: () => {
-        dispatch(userExitLogin())
+        dispatch(userExitLogin(
+            { pwd: 'abc' }
+        ))
     }
 });
 

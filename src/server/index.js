@@ -5,7 +5,6 @@ import proxy from 'express-http-proxy';
 import { matchRoutes } from 'react-router-config';
 import { render } from './utils'
 const app = express();
-const store = getStore();
 app.use(express.static('public'));
 app.use('/api', proxy('192.168.50.33:8000', {
     proxyReqPathResolver: function (req) {
@@ -13,15 +12,30 @@ app.use('/api', proxy('192.168.50.33:8000', {
     }
 }));
 app.get('*', function (req, res) {
+    const store = getStore(req);
     const promises = []
     const matchedRoutes = matchRoutes(routes, req.path);
     matchedRoutes.forEach(item => {
         if (item.route.loadData) {
-            promises.push(item.route.loadData(store))
+            const promise = new Promise((resolve, reject) => {
+                item.route.loadData(store).then(resolve).catch(resolve);
+            })
+            promises.push(promise)
         }
     });
     Promise.all(promises).then(data => {
-        res.send(render(store, routes, req));
+        const context = {};
+        const html = render(store, routes, req, context);
+        console.log(context);
+        if (context.action === 'REPLACE') {
+            res.redirect(301, context.url)
+        }
+        else if (context.NO_FOUND) {
+            res.status(404);
+            res.send(html);
+        } else {
+            res.send(html)
+        }
     });
 
 })

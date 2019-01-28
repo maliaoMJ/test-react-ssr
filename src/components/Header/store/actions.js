@@ -15,19 +15,19 @@ const exitLogin = (payload) => {
 }
 
 
-export const userToLogin = () => {
+export const userToLogin = (data) => {
     return (dispatch, getState, AxiosInstance) => {
-        return AxiosInstance.get('/api/users/login').then(res => {
-            dispatch(userLogin(res.data.data));
+        return AxiosInstance.post('/api/users/login', data).then(res => {
+            dispatch(userLogin(res.data));
         })
     }
 }
 
-export const userExitLogin = () => {
+export const userExitLogin = (data) => {
     return (dispatch, getState, AxiosInstance) => {
-        return AxiosInstance.post('/api/users/exit').then(res => {
+        return AxiosInstance.post('/api/users/exit', data).then(res => {
             dispatch(
-                exitLogin(payload)
+                exitLogin(res.data)
             )
         })
     }
