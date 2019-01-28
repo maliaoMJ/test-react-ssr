@@ -8,7 +8,7 @@ class App extends Component {
 
         return (
             <div>
-                <AppHeader></AppHeader>
+                <AppHeader staticContext={this.props.staticContext ? this.props.staticContext : {}}></AppHeader>
                 {renderRoutes(this.props.route.routes)}
             </div>
         )

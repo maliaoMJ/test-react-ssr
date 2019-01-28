@@ -24,9 +24,8 @@ app.get('*', function (req, res) {
         }
     });
     Promise.all(promises).then(data => {
-        const context = {};
+        const context = {css:[]};
         const html = render(store, routes, req, context);
-        console.log(context);
         if (context.action === 'REPLACE') {
             res.redirect(301, context.url)
         }

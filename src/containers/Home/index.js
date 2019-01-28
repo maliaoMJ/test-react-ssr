@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import AppHeader from '../../components/Header/index';
 import { getHomeList } from './store/actions';
-
+import styleCommpent from '../../withStyle'
+import styles from './index.css';
 class Home extends Component {
     render() {
         return (<div>
-            <span>Home page</span>
+            <span className={styles.font}>Home page</span>
             {this.props.userList.map(item => { return <div key={item.id}>{item.name}</div> })}
             <button onClick={() => console.log(this.props)}>click</button>
         </div>)
@@ -27,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
         dispatch(getHomeList())
     }
 })
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(styleCommpent(Home,styles))

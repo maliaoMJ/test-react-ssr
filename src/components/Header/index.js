@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userToLogin, userExitLogin } from './store/actions'
+import { userToLogin, userExitLogin } from './store/actions';
+import styleCommpent from '../../withStyle'
+import styles from './index.css'
 class AppHeader extends Component {
     render() {
         return (<div>
-            <span>Header Components</span>
+            <span className={styles.font}>Header Components</span>
             <Link to="/">home</Link>
             <Link to="/login">Login</Link>
             <p onClick={this.props.toLogin}>登录</p>
@@ -15,7 +17,7 @@ class AppHeader extends Component {
         </div>)
     }
     componentDidMount() {
-        // console.log(this.props);
+        console.log(this.props);
     }
 }
 
@@ -36,4 +38,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(styleCommpent(AppHeader, styles));
