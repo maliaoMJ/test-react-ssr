@@ -27,4 +27,4 @@ const mapDispatchToProps = dispatch => ({
         dispatch(getHomeList())
     }
 })
-module.exports = connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

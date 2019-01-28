@@ -16,7 +16,7 @@ class App extends Component {
     componentDidMount() { }
 }
 const mapStateToProps = state => ({
-
+    store: state
 });
 const mapDispatchToProps = dispatch => ({
 
