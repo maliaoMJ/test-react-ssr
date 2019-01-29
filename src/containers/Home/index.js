@@ -1,19 +1,23 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import AppHeader from "../../components/Header/index";
+import { Helmet } from "react-helmet";
 import { getHomeList } from "./store/actions";
-import styleCommpent from "../../withStyle";
+import styleComponent from "../../withStyle";
 import styles from "./index.css";
 class Home extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
+        <Helmet>
+          <title>这是首页</title>
+          <meta name="description" content="reactSSR原理" />
+        </Helmet>
         <span className={styles.font}>Home page</span>
         {this.props.userList.map(item => {
           return <div key={item.id}>{item.name}</div>;
         })}
         <button onClick={() => console.log(this.props)}>click</button>
-      </div>
+      </Fragment>
     );
   }
   componentDidMount() {
@@ -35,4 +39,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(styleCommpent(Home, styles));
+)(styleComponent(Home, styles));

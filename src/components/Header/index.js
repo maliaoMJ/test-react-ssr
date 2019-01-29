@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { userToLogin, userExitLogin } from "./store/actions";
-import styleCommpent from "../../withStyle";
+import styleHighComponents from "../../withStyle";
 import styles from "./index.css";
 class AppHeader extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <span className={styles.font}>Header Components</span>
         <Link to="/">home</Link>
         <Link to="/login">Login</Link>
@@ -15,7 +15,7 @@ class AppHeader extends Component {
         <p onClick={this.props.exit}>退出登录</p>
         <br />
         <span>{this.props.login ? this.props.user.pwd : "暂未登录"}</span>
-      </div>
+      </Fragment>
     );
   }
   componentDidMount() {
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(styleCommpent(AppHeader, styles));
+)(styleHighComponents(AppHeader, styles));
