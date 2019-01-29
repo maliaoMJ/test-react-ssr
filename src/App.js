@@ -5,7 +5,6 @@ import { renderRoutes } from 'react-router-config';
 class App extends Component {
 
     render() {
-
         return (
             <div>
                 <AppHeader staticContext={this.props.staticContext ? this.props.staticContext : {}}></AppHeader>
