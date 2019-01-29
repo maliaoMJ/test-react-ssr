@@ -1,16 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
-import AppHeader from '../../components/Header/index';
+import { Helmet } from 'react-helmet';
 import { getHomeList } from './store/actions';
-import styleCommpent from '../../withStyle'
+import styleComponent from '../../withStyle'
 import styles from './index.css';
 class Home extends Component {
     render() {
-        return (<div>
+        return (<Fragment>
+            <Helmet>
+                <title>这是首页</title>
+                <meta name="description" content="reactSSR原理"></meta>
+            </Helmet>
             <span className={styles.font}>Home page</span>
             {this.props.userList.map(item => { return <div key={item.id}>{item.name}</div> })}
             <button onClick={() => console.log(this.props)}>click</button>
-        </div>)
+        </Fragment>)
     }
     componentDidMount() {
         this.props.getHomeList();
@@ -28,4 +32,4 @@ const mapDispatchToProps = dispatch => ({
         dispatch(getHomeList())
     }
 })
-export default connect(mapStateToProps, mapDispatchToProps)(styleCommpent(Home,styles))
+export default connect(mapStateToProps, mapDispatchToProps)(styleComponent(Home, styles))

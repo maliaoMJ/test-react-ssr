@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 
@@ -8,16 +9,20 @@ export const render = (store, routes, req, context) => {
   const content = renderToString((
     <Provider store={store}>
       <StaticRouter location={req.path} context={context}>
-        <div>
+        <Fragment>
           {renderRoutes(routes)}
-        </div>
+        </Fragment>
       </StaticRouter>
     </Provider>
   ));
+  const helmet = Helmet.renderStatic();
   const cssStr = context.css.length ? context.css.join('\n') : '';
   return `
          <html>
-           <head></head>
+           <head>
+             ${helmet.title.toString()}
+             ${helmet.meta.toString()}
+           </head>
            <style>${cssStr}</style>
            <body>
              <div id="root">${content}</div>
