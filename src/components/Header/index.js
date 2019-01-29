@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { userToLogin, userExitLogin } from "./store/actions";
 import styleHighComponents from "../../withStyle";
-import styles from "./index.css";
+import styles from "./index.scss";
 class AppHeader extends Component {
   render() {
     return (

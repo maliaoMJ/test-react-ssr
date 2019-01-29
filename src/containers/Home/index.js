@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { getHomeList } from "./store/actions";
 import styleComponent from "../../withStyle";
-import styles from "./index.css";
+import styles from "./index.scss";
 class Home extends Component {
   render() {
     return (
